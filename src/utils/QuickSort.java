@@ -13,8 +13,8 @@ public class QuickSort {
 //            int a = sc.nextInt();
 //            list.add(a);
 //        }
-        for (int i= 0; i < 1000; i++){
-            int rd = (int)(Math.random()*1000);
+        for (int i= 0; i < 10; i++){
+            int rd = (int)(Math.random()*10);
             list1.add(rd);
             list2.add(rd);
         }
@@ -36,12 +36,12 @@ public class QuickSort {
     }
 
     static void bubble(int[] s){
-        for(int i = 0; i < s.length -1; i++){
-            for (int j = 0; j < s.length - i - 1; j++){
+        for (int i = 0; i < s.length -1; i++){
+            for (int j = 0; j < s.length - i - 1; j++ ){
                 if (s[j] > s[j+1]){
-                    int t = s[j];
+                    int temp = s[j];
                     s[j] = s[j+1];
-                    s[j+1] = t;
+                    s[j+1] = temp;
                 }
             }
         }
@@ -49,7 +49,7 @@ public class QuickSort {
 
     static void sort(int[] s, int l, int r){
         if (l < r){
-            int i = l, j = r, x = s[l];
+            int i = l, j = r, x = s[i];
             while (i < j){
                 while (i < j && x <= s[j]) j--;
                 if (i < j) s[i++] = s[j];

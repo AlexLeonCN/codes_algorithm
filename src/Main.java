@@ -1,10 +1,108 @@
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
+
 /*
 这是一个测试类
  */
 public class Main {
     public static void main(String[] args) {
-
+        int i = 1;
+        i = i++;
+        System.out.println(i);
+        int j = 1;
+        j = ++j;
+        System.out.println(j);
     }
+
+//    public static void main(String[] args) {
+//        String str = "bc123bcd12345";
+//        System.out.println(maxSubString(str));
+//    }
+//    static String maxSubString(String str){
+//        String result = "";
+//        StringBuilder sb = null;
+//        char[] chars = str.toCharArray();
+//        for (int i = 0; i < chars.length; i++){
+//            if (isNum(""+chars[i])){
+//                if (sb == null) sb = new StringBuilder("");
+//                sb.append(""+chars[i]);
+//            }else{
+//                String sbStr = sb==null?"":new String((sb));
+//                result  = (sbStr.length() > result.length())? sbStr : result;
+//                sb = null;
+//            }
+//        }
+//        String sbStr = sb==null?"":new String(sb);
+//        return sb.length()>result.length()?sbStr:result;
+//    }
+//
+//    static boolean isNum(String s){
+//        Pattern pattern = Pattern.compile("[0-9]*");
+//        return  pattern.matcher(s).matches();
+//    }
+//    public static void main(String[] args) {
+//        int[][] input = new int[][]{{1,1,1,1,0},
+//                                    {1,1,1,1,0},
+//                                    {1,0,0,0,1}};
+//        int count = 0;//计数输出
+//        int[][] checked = new int[input.length][input[0].length];
+//        for (int i = 0; i < input.length; i++){
+//            for (int j =0; j < input[0].length; j++){
+//                if (input[i][j] == 1 && checked[i][j] == 0) {
+//                    checked[i][j] = 1;
+//                    check(input,checked,i,j);
+//                    count++;
+//                }
+//            }
+//        }
+//        System.out.println(count);
+//    }
+//
+//
+//    static void check(int[][] input, int[][] checked, int i, int j) {
+//        //向上走
+//        if (i-1 >= 0  && input[i-1][j]==1 && checked[i-1][j] == 0) {
+//            checked[i-1][j] = 1;
+//            check(input,checked,i-1,j);
+//        }
+//        //向下走
+//        if (i+1 < input.length && input[i+1][j]==1 && checked[i+1][j] == 0){
+//            checked[i+1][j] = 1;
+//            check(input,checked,i+1,j);
+//        }
+//        //向左走
+//        if (j-1>=0 && input[i][j-1]==1 && checked[i][j-1] == 0){
+//            checked[i][j-1] = 1;
+//            check(input,checked, i, j-1);
+//        }
+//        //向右走
+//        if (j+1<input[0].length && input[i][j+1]==1 && checked[i][j+1] == 0){
+//            checked[i][j+1] = 1;
+//            check(input,checked,i,j+1);
+//        }
+//    }
+
+    //当前元素为input[i][j], 为水的时候进行跳过
+//                if (input[i][j] == 0) continue;
+//               //上
+//                int up = 0;
+//                if (i-1<=0)  up = 0;
+//                else up = input[i-1][j];
+//                //下
+//                int down = 0;
+//                if (i+1>=input.length) down = 0;
+//                else down = input[i+1][j];
+//                //左
+//                int left = 0;
+//                if (j-1<=0) left =0;
+//                else left = input[i][j-1];
+//                //右
+//                int right =0;
+//                if (j+1>=input[i].length) right = 0;
+//                else right = input[i][j+1];
+//                if (up+down+left+right == 0) count++;//四周都是水的时候
 //    static boolean hasPathSum(TreeNode root, int targetSum) {
 //        List<Integer> pool = new ArrayList<Integer>();
 //        TreeNode node = root;
@@ -144,4 +242,53 @@ public class Main {
 //        Pattern p = Pattern.compile("[0-9]*");
 //        return p.matcher(s).matches();
 //    }
+
+//    class Solution {
+//        private int[][] visited;        //标记数组，标记有没有走过
+//        private int row;
+//        private int col;
+//        public void dfs(int i,int j,char [][]grid){
+//            //如果没有走到上边的边界
+//            //并且上边仍然是陆地，且没有走过
+//            if(i-1>=0 && (grid[i-1][j]=='1' && visited[i-1][j]==0)){
+//                visited[i-1][j]=1;
+//                dfs(i-1,j,grid);
+//            }
+//            //向下走
+//            if(i+1<row && (grid[i+1][j]=='1' && visited[i+1][j]==0)){
+//                visited[i+1][j]=1;
+//                dfs(i+1,j,grid);
+//            }
+//            //向左走
+//            if(j-1>=0 && (grid[i][j-1]=='1' && visited[i][j-1]==0)){
+//                visited[i][j-1]=1;
+//                dfs(i,j-1,grid);
+//            }
+//            //向右走
+//            if(j+1<col && (grid[i][j+1]=='1' && visited[i][j+1]==0)){
+//                visited[i][j+1]=1;
+//                dfs(i,j+1,grid);
+//            }
+//        }
+//        public int numIslands(char[][] grid) {
+//            row=grid.length;
+//            col=grid[0].length;
+//            int count=0;            //统计岛屿数量
+//            visited=new int[row][col];
+//            //在外层用一个for循环，对每个元素尝试以它为起点进行遍历
+//            //每次遍历的时候就可以遍历一个连通图（即一个岛屿）
+//            for(int i=0;i<row;i++){
+//                for(int j=0;j<col;j++){
+//                    if(grid[i][j]=='1' && visited[i][j]==0){
+//                        visited[i][j]=1;
+//                        dfs(i,j,grid);
+//                        count++;
+//                    }
+//                }
+//            }
+//            return count;
+//        }
+//    }
+
+
 }
