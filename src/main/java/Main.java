@@ -8,13 +8,23 @@ import java.util.regex.Pattern;
  */
 public class Main {
     public static void main(String[] args) {
-        int i = 1;
-        i = i++;
-        System.out.println(i);
-        int j = 1;
-        j = ++j;
-        System.out.println(j);
+//        int[] num = new int[]{1,2,3,4,1,2,3,4,1,2,3,4,5};
+//        int[] num = new int[]{1,2,3,4,5};
+        int[] num = new int[]{1,2,3,4,5};
+        int a = num[0];
+        for (int i = 1; i < num.length; i++){
+            a ^= num[i];
+        }
+        System.out.println(a);
     }
+//    public static void main(String[] args) {
+//        int i = 1;
+//        i = i++;
+//        System.out.println(i);
+//        int j = 1;
+//        j = ++j;
+//        System.out.println(j);
+//    }
 
 //    public static void main(String[] args) {
 //        String str = "bc123bcd12345";
