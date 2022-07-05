@@ -43,7 +43,7 @@ public class Main {
         }
     }
 
-    /*上面是练习 - 下面是答案*/
+    /*上面是练习 - 下面是答案 ===========================================================================================*/
 
     //冒泡排序
     public int[] bubbleSort(int[] input) {
@@ -88,5 +88,32 @@ public class Main {
         }
     }
 
-    //二分查找
+    //二分查找，前提是递增有序数组
+    public int binarySearch(int[] nums, int target){
+        int l = 0, r = nums.length - 1, m;
+        while (l <= r){
+            m = (l + r) >>> 1;
+            if (nums[m] == target) {
+                return m;
+            }else if (nums[m] > target) {
+                r = m - 1;
+            }else {
+                l = m + 1;
+            }
+        }
+        return -1;//没有
+    }
+
+    public static int binarySearch(int[] nums , int fromIndex, int toIndex, int value){
+        if(fromIndex>toIndex)
+            return -1;
+        int mid = (fromIndex+toIndex) >>> 1;
+        if(nums[mid] < value){
+            return binarySearch(nums,mid + 1, toIndex, value);
+        }else if(nums[mid]>value){
+            return binarySearch(nums, fromIndex,mid - 1, value);
+        }else{
+            return mid;
+        }
+    }
 }
